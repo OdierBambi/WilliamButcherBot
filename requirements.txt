@@ -24,4 +24,4 @@ pyromod
 fuzzysearch
 img2pdf
 telegraph
-jikanpy
+
