@@ -31,3 +31,12 @@ async def paste(content: str):
     if not resp["status"]:
         return
     return BASE + resp["message"]
+
+BASE = "https://nekobin.com/"
+
+
+async def paste(content: str):
+    resp = await post(f"{BASE}api/paste", data={"content": content})
+    if not resp["status"]:
+        return
+    return BASE + resp["message"]
