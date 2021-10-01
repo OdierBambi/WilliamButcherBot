@@ -36,7 +36,7 @@ from wbb.utils.nekobin import paste
 
 __MODULE__ = "Paste"
 __HELP__ = "/paste - To Paste Replied Text Or Document To A Pastebin"
-           "/neko -  To Paste Replied Text Or Document To A nekobin"
+           "/neko - To Paste Replied Text Or Document To A nekobin"
 pattern = re.compile(r"^text/|json$|yaml$|xml$|toml$|x-sh$|x-shellscript$")
 
 
