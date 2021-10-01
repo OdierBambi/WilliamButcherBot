@@ -24,17 +24,9 @@ SOFTWARE.
 from wbb.utils.http import post
 
 BASE = "https://batbin.me/"
-BASE2 = "https://pasty.lus.pm/"
-
 
 async def paste(content: str):
     resp = await post(f"{BASE}api/paste", data={"content": content})
     if not resp["status"]:
         return
     return BASE + resp["message"]
-
-async def nekos(content: str):
-    resp = await post(f"{BASE2}api/nekos", data={"content": content})
-    if not resp["status"]:
-        return
-    return BASE2 + resp["message"]
