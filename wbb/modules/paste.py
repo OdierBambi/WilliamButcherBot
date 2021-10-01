@@ -32,7 +32,7 @@ from wbb import SUDOERS, USERBOT_PREFIX, app, app2, eor
 from wbb.core.decorators.errors import capture_err
 from wbb.core.keyboard import ikb
 from wbb.utils.pastebin import paste
-from wbb.utils.nekobin import nekopas
+from wbb.utils.nekobin import paste
 
 __MODULE__ = "Paste"
 __HELP__ = "/paste - To Paste Replied Text Or Document To A Pastebin"
