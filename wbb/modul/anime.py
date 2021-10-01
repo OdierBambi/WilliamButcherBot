@@ -5,10 +5,26 @@ import textwrap
 import bs4
 import jikanpy
 import requests
-from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton, ParseMode
-from telegram.ext import CallbackContext, CommandHandler
+from pyrogram import Update, InlineKeyboardMarkup, InlineKeyboardButton, ParseMode
 
-from bot import dispatcher
+__MODULE__ = "Anime"
+__HELP__ = """
+ /anime
+    returns information about the anime.
+ /character
+    returns information about the character.
+ /manga
+    returns information about the manga.
+ /user
+    returns information about a MyAnimeList user.
+ /upcoming
+    returns a list of new anime in the upcoming seasons.
+ /kaizoku
+    search an anime on animekaizoku.com
+ /kayo
+    search an anime on animekayo.com
+ /airing
+    returns anime airing info.
 
 def shorten(description, info = 'anilist.co'):
     msg = "" 
@@ -149,7 +165,7 @@ query ($id: Int,$search: String) {
 url = 'https://graphql.anilist.co'
 
 
-def anime(update: Update, context: CallbackContext):
+def anime(update: Update):
     message = update.effective_message
     search = message.text.split(' ', 1)
     if len(search) == 1: return
@@ -250,7 +266,7 @@ def manga(update: Update, _):
         else: update.effective_message.reply_text(msg, parse_mode=ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup(buttons))
 
 
-def upcoming(update: Update, context: CallbackContext):
+def upcoming(update: Update,):
     jikan = jikanpy.jikan.Jikan()
     upcomin = jikan.top("anime", page=1, subtype="upcoming")
 
@@ -263,26 +279,3 @@ def upcoming(update: Update, context: CallbackContext):
         upcoming_message += f"{entry_num + 1}. {upcoming_list[entry_num]}\n"
 
     update.effective_message.reply_text(upcoming_message)
-
-
-def weebhelp(update, context):
-    help_string = '''
-• `/anime`*:* Cari anime
-• `/char`*:* Cari character
-• `/manga`*:* Cari manga
-• `/upcoming`*:* Melihat daftar anime baru di musim mendatang.
-'''
-    update.effective_message.reply_photo("https://telegra.ph/file/26ed787af14536750587d.jpg", help_string, parse_mode=ParseMode.MARKDOWN)
-
-
-ANIME_HANDLER = CommandHandler("anime", anime)
-CHARACTER_HANDLER = CommandHandler("char", character)
-MANGA_HANDLER = CommandHandler("manga", manga)
-UPCOMING_HANDLER = CommandHandler("upcoming", upcoming)
-WEEBHELP_HANDLER = CommandHandler("weebhelp", weebhelp)
-
-dispatcher.add_handler(ANIME_HANDLER)
-dispatcher.add_handler(CHARACTER_HANDLER)
-dispatcher.add_handler(MANGA_HANDLER)
-dispatcher.add_handler(UPCOMING_HANDLER)
-dispatcher.add_handler(WEEBHELP_HANDLER)
