@@ -25,6 +25,7 @@ __HELP__ = """
     search an anime on animekayo.com
  /airing
     returns anime airing info.
+"""
 
 def shorten(description, info = 'anilist.co'):
     msg = "" 
