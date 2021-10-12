@@ -17,6 +17,7 @@ speedtest-cli
 TgCrypto
 uvloop
 youtube_dl
+youtube_search
 bs4
 python-dotenv
 feedparser
