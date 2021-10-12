@@ -22,10 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 import secrets
+import os
 import string
 from asyncio import Lock
 
 from pyrogram import filters
+from googletrans import Translator
 
 from wbb import SUDOERS, USERBOT_PREFIX, app, app2, arq, eor
 from wbb.core.decorators.errors import capture_err
