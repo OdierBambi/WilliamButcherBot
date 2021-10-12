@@ -8,6 +8,17 @@ from youtube_search import YoutubeSearch
 import requests
 
 
+__MODULE__ = "song"
+__HELP__ = "/song - to download song from youtube"
+
+
+
+def time_to_seconds(time):
+    stringt = str(time)
+    return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(':'))))
+
+
+
 @app2.on_message(
     filters.command("song", prefixes=USERBOT_PREFIX) & filters.user(SUDOERS)
 )
